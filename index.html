@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Anannya Chamat |  Portfolio</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link href="https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+  <header class="l-header">
+    <nav class="nav">
+      <div class="nav__left">
+        <ul class="nav__menu" id="nav-menu">
+          <li class="nav__item"><a href="#home" class="nav__link active-link">Home</a></li>
+          <li class="nav__item"><a href="#about" class="nav__link">About</a></li>
+          <li class="nav__item"><a href="#skills" class="nav__link">Skills</a></li>
+          <li class="nav__item"><a href="#projects" class="nav__link">Projects</a></li>
+          <li class="nav__item"><a href="#contact" class="nav__link">Contact</a></li>
+        </ul>
+      </div>
+      <div class="nav__right" style="margin-left: auto;">
+        <a href="assets/resume.pdf" class="nav__link nav__resume" target="_blank" style="background-color: #3AAFA9; color: white; padding: 0.4rem 1rem; border-radius: 6px;">Resume</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="l-main">
+    <section class="home bd-grid" id="home">
+      <div class="home__data">
+        <h1 class="home__title">Hi, I'm <span class="home__title-color">Anannya</span><br />Data Analyst & BI Developer</h1>
+        <a href="#contact" class="button">Contact</a>
+        <div class="home__social" style="margin-top: 1rem; gap: 1rem; display: flex; justify-content: center; padding-top: 0.5rem;">
+          <a href="https://www.linkedin.com/in/anannya-chamat/" target="_blank" class="home__social-icon"><i class='bx bxl-linkedin'></i></a>
+          <a href="https://github.com/anannyachamat" target="_blank" class="home__social-icon"><i class='bx bxl-github'></i></a>
+          <a href="mailto:anannyachamat@gmail.com" class="home__social-icon"><i class='bx bx-envelope'></i></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="about section" id="about">
+      <h2 class="section-title">About Me</h2>
+      <div class="about__container bd-grid" style="display: flex; flex-direction: row; align-items: flex-start; gap: 2rem; justify-content: center;">
+        <div class="about__img">
+          <img src="assets/img/about.jpg" alt="Anannya" style="border-radius: 50%; width: 200px; height: 200px; object-fit: cover; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);" />
+        </div>
+        <div style="max-width: 500px; text-align: left;">
+          <h2 class="about__subtitle">I'm Anannya Chamat</h2>
+          <p class="about__text">
+            I'm a Master's student in Information Systems at UTA, passionate about converting complex data into clear, actionable insights. I specialize in data analysis, predictive analytics, and dashboard development using Power BI and Tableau. I’m also proficient in frontend web development (HTML, CSS, JS), with a keen eye for UI/UX. Actively seeking opportunities in Data Analytics, Business Intelligence, and Web Development.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="skills section" id="skills">
+      <h2 class="section-title">Skills</h2>
+      <p class="section-subtitle">Things I work with and enjoy doing</p>
+      <div class="skills-grid">
+        <div class="skill-card">
+          <i class="fas fa-database skill-icon"></i>
+          <h3>SQL</h3>
+          <p>Designing and querying relational databases to extract meaningful insights.</p>
+        </div>
+        <div class="skill-card">
+          <i class="fas fa-chart-line skill-icon"></i>
+          <h3>Data Analysis</h3>
+          <p>Transforming raw data into insights using Python, pandas, and NumPy.</p>
+        </div>
+        <div class="skill-card">
+          <i class="fas fa-chart-pie skill-icon"></i>
+          <h3>Data Visualization</h3>
+          <p>Creating dashboards using Power BI, Tableau, matplotlib, seaborn & Plotly.</p>
+        </div>
+        <div class="skill-card">
+          <i class="fas fa-code-branch skill-icon"></i>
+          <h3>Git</h3>
+          <p>Version control and collaboration through Git and GitHub workflows.</p>
+        </div>
+        <div class="skill-card">
+          <i class="fas fa-language skill-icon"></i>
+          <h3>Natural Language Processing (NLP)</h3>
+          <p>Processing and analyzing text using NLTK, spaCy, and transformers.</p>
+        </div>
+        <div class="skill-card">
+          <i class="fas fa-cloud skill-icon"></i>
+          <h3>Cloud (AWS/GCP)</h3>
+          <p>Deploying and maintaining data solutions on cloud platforms.</p>
+        </div>
+        <div class="skill-card">
+          <i class="fas fa-laptop-code skill-icon"></i>
+          <h3>Frontend Web Development</h3>
+          <p>Building responsive interfaces using HTML, CSS, and JavaScript.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="work section" id="projects">
+      <h2 class="section-title">Projects</h2>
+      <div class="work__container bd-grid">
+        <a href="#" class="work__img"><img src="assets/img/work1.png" alt="Inventory Tool" /></a>
+        <a href="#" class="work__img"><img src="assets/img/work2.png" alt="Text Skimmer" /></a>
+        <a href="#" class="work__img"><img src="assets/img/work3.png" alt="Suicide Risk Dashboard" /></a>
+      </div>
+    </section>
+
+    <section class="contact section" id="contact">
+      <h2 class="section-title">Contact Me</h2>
+      <div class="contact__container bd-grid">
+        <form action="mailto:anannyachamat@gmail.com" method="post" enctype="text/plain" class="contact__form">
+          <input type="text" name="name" placeholder="Your Name" class="contact__input" />
+          <input type="email" name="email" placeholder="Your Email" class="contact__input" />
+          <textarea name="message" placeholder="Your Message" class="contact__input"></textarea>
+          <input type="submit" value="Send" class="contact__button button" />
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p class="footer__title">Anannya</p>
+    <div class="footer__social">
+      <a href="https://linkedin.com/in/anannya-chamat" class="footer__icon"><i class='bx bxl-linkedin'></i></a>
+      <a href="https://github.com/anannya-chamat" class="footer__icon"><i class='bx bxl-github'></i></a>
+      <a href="mailto:anannyachamat@gmail.com" class="footer__icon"><i class='bx bx-envelope'></i></a>
+    </div>
+    <p class="footer__copy">© 2025 Anannya Chamat. All rights reserved.</p>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>
