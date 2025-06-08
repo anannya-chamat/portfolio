@@ -100,14 +100,28 @@ img {
   font-weight: var(--font-semi);
 }
 
-.nav__link:hover::after,
+.nav__link {
+  position: relative; /* Needed for absolute ::after positioning */
+  display: inline-block; /* Ensures proper sizing and alignment */
+}
+
+.nav__link::after,
 .active-link::after {
   content: "";
-  display: block;
+  position: absolute;
+  left: 0;
+  bottom: 0; /* Adjust as needed */
   height: 2px;
-  background: var(--first-color);
   width: 100%;
-  margin-top: 4px;
+  background-color: var(--first-color);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease-in-out;
+}
+
+.nav__link:hover::after,
+.active-link::after {
+  transform: scaleX(1);
 }
 
 .nav__logo {
