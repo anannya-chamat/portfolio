@@ -12,7 +12,7 @@ I'm a Master's student in Information Systems at UTA with a strong foundation in
 ## 🛠️ Tech Stack
 
 - **HTML5** – semantic structure
-- **SCSS/CSS3** – modular, reusable styles
+- **CSS3** – modular, reusable styles
 - **JavaScript (ES6)** – scroll handling, menu toggle
 - **Font Awesome + BoxIcons** – clean icons
 - **Responsive Design** – media queries and flex/grid layout
