@@ -5,9 +5,6 @@
 :root {
   --header-height: 3rem;
   --font-semi: 600;
-  --first-color: #3AAFA9;
-  --second-color: #2E3D49;
-  --background-color: #F5F7FA;
   --body-font: "Poppins", sans-serif;
   --big-font-size: 2rem;
   --h2-font-size: 1.25rem;
@@ -19,6 +16,58 @@
   --mb-6: 3rem;
   --z-back: -10;
   --z-fixed: 100;
+}
+
+/*===== THEMES =====*/
+/* Light is the default. The `data-theme` attribute on <html> always wins so the
+   toggle can override the OS preference in either direction. */
+:root,
+:root[data-theme="light"] {
+  color-scheme: light;
+  --first-color: #3AAFA9;
+  --first-color-alt: #2B7A78;
+  --second-color: #2E3D49;
+  --background-color: #F5F7FA;
+  --surface-color: #FFFFFF;
+  --border-color: #CCCCCC;
+  --shadow-color: rgba(0, 0, 0, 0.08);
+  --shadow-color-strong: rgba(0, 0, 0, 0.15);
+  --footer-background: #2E3D49;
+  --footer-color: #FFFFFF;
+  --on-accent-color: #FFFFFF;
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --first-color: #4FD1C5;
+  --first-color-alt: #7FE3DA;
+  --second-color: #E4ECF2;
+  --background-color: #0F1720;
+  --surface-color: #18232F;
+  --border-color: #33434F;
+  --shadow-color: rgba(0, 0, 0, 0.45);
+  --shadow-color-strong: rgba(0, 0, 0, 0.6);
+  --footer-background: #0A1017;
+  --footer-color: #E4ECF2;
+  --on-accent-color: #0F1720;
+}
+
+/* Users who never touch the toggle follow their OS setting. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    color-scheme: dark;
+    --first-color: #4FD1C5;
+    --first-color-alt: #7FE3DA;
+    --second-color: #E4ECF2;
+    --background-color: #0F1720;
+    --surface-color: #18232F;
+    --border-color: #33434F;
+    --shadow-color: rgba(0, 0, 0, 0.45);
+    --shadow-color-strong: rgba(0, 0, 0, 0.6);
+    --footer-background: #0A1017;
+    --footer-color: #E4ECF2;
+    --on-accent-color: #0F1720;
+  }
 }
 
 @media screen and (min-width: 968px) {
@@ -45,6 +94,7 @@ body {
   font-size: var(--normal-font-size);
   color: var(--second-color);
   background: var(--background-color);
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 h1, h2, p {
@@ -74,8 +124,9 @@ img {
   top: 0;
   left: 0;
   z-index: var(--z-fixed);
-  background-color: #fff;
-  box-shadow: 0 1px 4px rgba(146, 161, 176, 0.15);
+  background-color: var(--surface-color);
+  box-shadow: 0 1px 4px var(--shadow-color-strong);
+  transition: background-color 0.3s ease;
 }
 
 .nav {
@@ -123,11 +174,14 @@ img {
 
 .nav__right {
   margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
 }
 
 .nav__resume {
   background-color: var(--first-color);
-  color: white;
+  color: var(--on-accent-color);
   padding: 0.4rem 1rem;
   border-radius: 6px;
   font-weight: 600;
@@ -137,7 +191,60 @@ img {
 }
 
 .nav__resume:hover {
-  background-color: #2B7A78;
+  background-color: var(--first-color-alt);
+}
+
+/*===== THEME TOGGLE =====*/
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  padding: 0;
+  border: 1px solid var(--border-color);
+  border-radius: 50%;
+  background-color: transparent;
+  color: var(--first-color);
+  font-size: 1.25rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+}
+
+.theme-toggle:hover {
+  background-color: var(--background-color);
+  border-color: var(--first-color);
+}
+
+.theme-toggle:focus-visible {
+  outline: 2px solid var(--first-color);
+  outline-offset: 2px;
+}
+
+/* Only the icon for the theme you can switch *to* is shown. The `:root` prefix
+   keeps these above the Boxicons `.bx { display: inline-block }` rule, which is
+   loaded after this stylesheet. */
+:root .theme-toggle__icon--dark {
+  display: none;
+}
+
+:root[data-theme="dark"] .theme-toggle__icon--light {
+  display: none;
+}
+
+:root[data-theme="dark"] .theme-toggle__icon--dark {
+  display: block;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) .theme-toggle__icon--light {
+    display: none;
+  }
+
+  :root:not([data-theme]) .theme-toggle__icon--dark {
+    display: block;
+  }
 }
 
 /*===== SECTIONS =====*/
@@ -205,7 +312,7 @@ img {
 /*===== BUTTON =====*/
 .button {
   background-color: var(--first-color);
-  color: white;
+  color: var(--on-accent-color);
   padding: 0.75rem 2rem;
   border: none;
   border-radius: 0.5rem;
@@ -215,8 +322,8 @@ img {
 }
 
 .button:hover {
-  background-color: #2B7A78;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  background-color: var(--first-color-alt);
+  box-shadow: 0 8px 24px var(--shadow-color-strong);
 }
 
 /*===== ABOUT =====*/
@@ -234,7 +341,7 @@ img {
   height: 220px;
   object-fit: cover;
   border-radius: 50%;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 12px var(--shadow-color-strong);
 }
 
 .about__subtitle {
@@ -265,17 +372,17 @@ img {
 }
 
 .skill-card {
-  background-color: #ffffff;
+  background-color: var(--surface-color);
   padding: 1.5rem;
   border-radius: 12px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 15px var(--shadow-color);
   text-align: center;
-  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .skill-card:hover {
   transform: translateY(-6px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 8px 25px var(--shadow-color-strong);
 }
 
 .skill-icon {
@@ -307,7 +414,7 @@ img {
   width: 100%;
   border-radius: 8px;
   transition: transform 0.3s ease;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 8px var(--shadow-color-strong);
 }
 
 .work__img img:hover {
@@ -326,23 +433,36 @@ img {
 .contact__input, .contact__button {
   padding: 0.75rem;
   border-radius: 6px;
-  border: 1px solid #ccc;
+  border: 1px solid var(--border-color);
   font-family: var(--body-font);
+}
+
+.contact__input {
+  background-color: var(--surface-color);
+  color: var(--second-color);
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+.contact__input::placeholder {
+  color: var(--second-color);
+  opacity: 0.6;
 }
 
 .contact__button {
   background: var(--first-color);
-  color: white;
+  color: var(--on-accent-color);
+  border-color: var(--first-color);
   font-weight: bold;
   cursor: pointer;
 }
 
 /*===== FOOTER =====*/
 .footer {
-  background-color: var(--second-color);
-  color: #fff;
+  background-color: var(--footer-background);
+  color: var(--footer-color);
   text-align: center;
   padding: 2rem 1rem;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .footer__title {
@@ -352,7 +472,7 @@ img {
 
 .footer__icon i {
   font-size: 1.5rem;
-  color: #fff;
+  color: var(--footer-color);
   margin: 0 10px;
 }
 
@@ -388,5 +508,12 @@ img {
     width: 100%;
     display: flex;
     justify-content: flex-end;
+  }
+}
+
+/*===== REDUCED MOTION =====*/
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    transition-duration: 0.01ms !important;
   }
 }

@@ -7,6 +7,19 @@
   <link rel="stylesheet" href="styles.css" />
   <link href="https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <!-- Applies the saved theme before first paint so there is no flash of the wrong theme. -->
+  <script>
+    (function () {
+      try {
+        var saved = localStorage.getItem('theme');
+        if (saved === 'light' || saved === 'dark') {
+          document.documentElement.setAttribute('data-theme', saved);
+        }
+      } catch (e) {
+        /* localStorage unavailable (private mode) - fall back to the OS preference. */
+      }
+    })();
+  </script>
 </head>
 <body>
   <header class="l-header">
@@ -21,6 +34,10 @@
         </ul>
       </div>
       <div class="nav__right">
+         <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Switch to dark mode" title="Switch to dark mode">
+           <i class='bx bx-moon theme-toggle__icon theme-toggle__icon--light'></i>
+           <i class='bx bx-sun theme-toggle__icon theme-toggle__icon--dark'></i>
+         </button>
          <a href="assets/resume.pdf" class="nav__link nav__resume" target="_blank">Resume</a>
       </div>
       <!-- <div class="nav__right" style="margin-left: auto;">
@@ -46,7 +63,7 @@
       <h2 class="section-title">About Me</h2>
       <div class="about__container bd-grid" style="display: flex; flex-direction: row; align-items: flex-start; gap: 2rem; justify-content: center;">
         <div class="about__img">
-          <img src="assets/img/about.jpg" alt="Anannya" style="border-radius: 50%; width: 200px; height: 200px; object-fit: cover; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);" />
+          <img src="assets/img/about.jpg" alt="Anannya" style="border-radius: 50%; width: 200px; height: 200px; object-fit: cover; box-shadow: 0 4px 12px var(--shadow-color-strong);" />
         </div>
         <div style="max-width: 500px; text-align: left;">
           <h2 class="about__subtitle">I'm Anannya Chamat</h2>
