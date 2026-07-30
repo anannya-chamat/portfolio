@@ -1,3 +1,49 @@
+/*===== LIGHT / DARK THEME TOGGLE =====*/
+const themeToggle = document.getElementById('theme-toggle');
+const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+
+const storedTheme = () => {
+  try {
+    const saved = localStorage.getItem('theme');
+    return saved === 'light' || saved === 'dark' ? saved : null;
+  } catch (e) {
+    return null;
+  }
+};
+
+// Without an explicit choice the page follows the OS preference via CSS.
+const currentTheme = () =>
+  storedTheme() || (prefersDark.matches ? 'dark' : 'light');
+
+const syncToggleLabel = () => {
+  if (!themeToggle) return;
+  const next = currentTheme() === 'dark' ? 'light' : 'dark';
+  const label = `Switch to ${next} mode`;
+  themeToggle.setAttribute('aria-label', label);
+  themeToggle.setAttribute('title', label);
+};
+
+const setTheme = theme => {
+  document.documentElement.setAttribute('data-theme', theme);
+  try {
+    localStorage.setItem('theme', theme);
+  } catch (e) {
+    /* Preference just won't persist across visits. */
+  }
+  syncToggleLabel();
+};
+
+themeToggle?.addEventListener('click', () => {
+  setTheme(currentTheme() === 'dark' ? 'light' : 'dark');
+});
+
+// Keep up with the OS while the visitor has not picked a theme themselves.
+prefersDark.addEventListener('change', () => {
+  if (!storedTheme()) syncToggleLabel();
+});
+
+syncToggleLabel();
+
 /*===== MENU SHOW TOGGLE =====*/
 const showMenu = (toggleId, navId) => {
   const toggle = document.getElementById(toggleId),
